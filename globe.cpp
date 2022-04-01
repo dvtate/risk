@@ -4,7 +4,7 @@
 
 #include "globe.hpp"
 
-Globe::Globe(const Map map, const std::vector<Player> players = {}):
+Globe::Globe(const Map& map, std::vector<Player> players = {}):
 	_players(std::move(players))
 {
 	// Make territory objects
@@ -19,4 +19,9 @@ Globe::Globe(const Map map, const std::vector<Player> players = {}):
 	}
 
 	_geography = map.get_geography();
+}
+
+[[nodiscard]] std::optional<std::vector<Territory*>> Globe::get_path(const Territory*, const Territory*) const {
+	// TODO BFS
+	std::vector<Territory*> ret;
 }

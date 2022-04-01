@@ -27,12 +27,12 @@ protected:
 
 public:
 	explicit Territory(
-		const std::string name,
+		std::string name,
 		std::vector<Territory*> borders = {},
 		Player* owner = nullptr,
 		unsigned short troops = 0
 	):
-		_name(name), _borders(borders), _owner(owner), _troops(troops)
+		_name(std::move(name)), _borders(std::move(borders)), _owner(owner), _troops(troops)
 	{}
 
 	// Add a bordering territory

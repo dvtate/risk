@@ -10,11 +10,16 @@
 #include <string>
 #include <iostream>
 #include <cinttypes>
+#include <optional>
 
 /**
- * This class describes a custom map
+ * @class describes a custom map
+ * Probably should reconsider how the geography is handled since using terminal UI isn't realistic for reasonably-sized maps
  */
 class Map {
+public:
+	using index_t = uint8_t;
+
 protected:
 	std::string _geography;
 	std::vector<std::pair<uint8_t, uint8_t>> _borders;
@@ -25,13 +30,13 @@ public:
 
 	enum class Failure { FORMAT, STREAM };
 
-	const std::string& get_geography() const {
+	[[nodiscard]] const std::string& get_geography() const {
 		return _geography;
 	}
-	const auto& get_borders() const {
+	[[nodiscard]] const auto& get_borders() const {
 		return _borders;
 	}
-	const auto& get_territories() const {
+	[[nodiscard]] const auto& get_territories() const {
 		return _territories;
 	}
 };
