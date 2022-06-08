@@ -8,15 +8,15 @@
 #include <string>
 
 /**
- * User for online games
+ * User for online games?
  */
 class User {
 	std::string _name;
 
 public:
-	explicit User(const std::string name): _name(name) {}
+	explicit User(std::string name): _name(std::move(name)) {}
 
-	const auto& get_name() {
+	[[nodiscard]] const auto& get_name() const {
 		return _name;
 	}
 };
@@ -34,9 +34,9 @@ protected:
 	Color _color;
 
 public:
-	Player(const std::string name, Color color): _name(name), _color(color) {}
+	Player(std::string name, Color color): _name(std::move(name)), _color(color) {}
 
-	const auto& get_name() const {
+	[[nodiscard]] const auto& get_name() const {
 		return _name;
 	}
 	const auto& get_color() const {

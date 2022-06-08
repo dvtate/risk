@@ -4,11 +4,11 @@
 
 #include <sstream>
 
-#include "map.hpp"
+#include "map_file.hpp"
 
-Map::Map(std::istream&& is) {
+MapFile::MapFile(std::istream&& is) {
 	if (!is)
-		throw Map::Failure::STREAM;
+		throw MapFile::Failure::STREAM;
 
 	// Verify start
 	std::string line;
@@ -16,7 +16,7 @@ Map::Map(std::istream&& is) {
 
 	const auto invalid_format = -1;
 	if (line != "territories:")
-		throw Map::Failure::FORMAT;
+		throw MapFile::Failure::FORMAT;
 
 	// Read territory names
 	while (!!is) {
@@ -26,7 +26,7 @@ Map::Map(std::istream&& is) {
 		_territories.emplace_back(line);
 	}
 	if (line != "borders:")
-		throw Map::Failure::FORMAT;
+		throw MapFile::Failure::FORMAT;
 
 	// Read borders
 	while (!!is) {
@@ -38,7 +38,7 @@ Map::Map(std::istream&& is) {
 		_borders.emplace_back(std::pair(a, b));
 	}
 	if (line != "map:")
-		throw Map::Failure::FORMAT;
+		throw MapFile::Failure::FORMAT;
 
 	// Read map
 	while (!!std::getline(is, line))

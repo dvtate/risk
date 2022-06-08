@@ -2,8 +2,8 @@
 // Created by tate on 11-01-21.
 //
 
-#ifndef RISK_MAP_HPP
-#define RISK_MAP_HPP
+#ifndef RISK_MAP_FILE_HPP
+#define RISK_MAP_FILE_HPP
 
 #include <vector>
 #include <utility>	// pair
@@ -16,7 +16,7 @@
  * @class describes a custom map
  * Probably should reconsider how the geography is handled since using terminal UI isn't realistic for reasonably-sized maps
  */
-class Map {
+class MapFile {
 public:
 	using index_t = uint8_t;
 
@@ -26,18 +26,18 @@ protected:
 	std::vector<std::string> _territories;
 
 public:
-	explicit Map(std::istream&& is);
+	explicit MapFile(std::istream&& is);
 
 	enum class Failure { FORMAT, STREAM };
 
-	[[nodiscard]] const std::string& get_geography() const {
+	[[nodiscard]] inline const std::string& get_geography() const {
 		return _geography;
 	}
-	[[nodiscard]] const auto& get_borders() const {
+	[[nodiscard]] inline const auto& get_borders() const {
 		return _borders;
 	}
-	[[nodiscard]] const auto& get_territories() const {
+	[[nodiscard]] inline const auto& get_territories() const {
 		return _territories;
 	}
 };
-#endif //RISK_MAP_HPP
+#endif //RISK_MAP_FILE_HPP

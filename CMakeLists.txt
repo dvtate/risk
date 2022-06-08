@@ -3,4 +3,4 @@ project(risk)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(risk main.cpp territory.cpp territory.hpp globe.cpp globe.hpp map.cpp map.hpp player.cpp player.hpp)
+add_executable(risk main.cpp territory.cpp territory.hpp state.cpp state.hpp map_file.cpp map_file.hpp player.cpp player.hpp)
